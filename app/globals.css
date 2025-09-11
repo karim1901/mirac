@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+.c{
+  background-color:#f7e5cf;
+}
+
+
+body{
+  min-width: 350px;
+  font-family: "Sora", sans-serif;
+}
+
+
+
+
+.ellipsis-text {
+  white-space: nowrap;       /* منع الانتقال لسطر جديد */
+  overflow: hidden;          /* إخفاء الجزء الزائد */
+  text-overflow: ellipsis;   /* إظهار ثلاث نقاط */
+  width: 200px;              /* ضع عرضًا مناسبًا */
+}
+
+
+.shadowBox{
+  box-shadow: "22" "22" "22" rgb(36, 33, 33);
+}
+
+
+.inputForm{
+  @apply border-[1px] border-primary pr-4 text-[.9rem] w-full h-[2.5rem] rounded-md outline-none ;
+}
+
+
