@@ -21,20 +21,20 @@ const Navbar = () => {
     const refright = useRef(null)
 
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log(refLift.current)
         console.log(refright.current)
-    },[])
+    }, [])
 
 
-    const onSide = ()=>{
-        refLift.current.style.width = "70%" 
-        refright.current.style.width = "100%" 
+    const onSide = () => {
+        refLift.current.style.width = "70%"
+        refright.current.style.width = "100%"
     }
 
-    const offSide = ()=>{
-        refLift.current.style.width = "0%" 
-        refright.current.style.width = "0%" 
+    const offSide = () => {
+        refLift.current.style.width = "0%"
+        refright.current.style.width = "0%"
     }
 
 
@@ -83,8 +83,13 @@ const Navbar = () => {
 
             <div className='bg-secondary'>
                 <div className='flex justify-between items-center px-4 h-[3rem] bg-black'>
-                    <IoMdMenu className='text-white text-[1.3rem]' onClick={onSide} />
-                    <h1 className='text-white text-[1.5rem]  bg-black'>MiracShop</h1>
+                    <IoMdMenu className='text-white text-[1.3rem]'  onClick={onSide} />
+                    <div  className='text-white flex text-[1.3rem]  bg-black' dir='ltr'>
+                        <p className='font-semibold'>M</p>
+                        <p>irac</p>
+                        <p className='font-semibold'>S</p>
+                        <p>hop</p>
+                    </div>
                 </div>
                 <div className='p-[.5rem] relative '>
                     <input type="text" placeholder='بحث...' className='w-full rounded-3xl h-[2.6rem] pr-[1.3rem] boxSearch outline-none ' />

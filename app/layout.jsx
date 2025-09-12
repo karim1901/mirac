@@ -12,7 +12,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" dir="rtl">
-      <body className={inter.className }>
+      <body className={`${inter.className} select-none`  }>
         <Navbar/>
         {children}
       </body>
