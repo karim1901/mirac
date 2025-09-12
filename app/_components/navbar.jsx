@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image';
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { CiSearch } from "react-icons/ci";
 
 import { FaHandshake } from 'react-icons/fa';
@@ -16,26 +16,32 @@ import { MdInstallMobile } from "react-icons/md";
 
 const Navbar = () => {
 
-    const [side, setSide] = useState({
-        wL: 0,
-        wG: 0
-    })
+
+    const refLift = useRef(null)
+    const refright = useRef(null)
 
 
+    useEffect(()=>{
+        console.log(refLift.current)
+        console.log(refright.current)
+    },[])
 
-    const onSide = () => {
-        setSide({ wL: 70, wG: 100 })
+
+    const onSide = ()=>{
+        refLift.current.style.width = "70%" 
+        refright.current.style.width = "100%" 
     }
 
-    const offSide = () => {
-        setSide({ wL: 0, wG: 0 })
+    const offSide = ()=>{
+        refLift.current.style.width = "0%" 
+        refright.current.style.width = "0%" 
     }
 
 
     return (
         <div className=' '>
 
-            <div className={`w-[${side.wL}%] h-full fixed z-50 bg-black duration-200 cursor-pointer select-none overflow-hidden`}>
+            <div ref={refLift} className={`w-[0] h-full fixed z-50 bg-black duration-200 cursor-pointer select-none overflow-hidden`} >
                 <div className='bg-white '>
                     <div className='flex flex-col items-center pt-4'>
                         <p className='text-primary'>حمل التطبيق الان</p>
@@ -66,7 +72,7 @@ const Navbar = () => {
                 </ul>
             </div>
 
-            <div className={`w-[${side.wG}%] h-screen fixed top-0 left-0  bg-[#ffffff67] z-40`} onClick={offSide}>
+            <div ref={refright} className={`w-[0] h-screen fixed top-0 left-0  bg-[#ffffff67] z-40`} onClick={offSide}>
 
             </div>
 
@@ -78,26 +84,15 @@ const Navbar = () => {
             <div className='bg-secondary'>
                 <div className='flex justify-between items-center px-4 h-[3rem] bg-black'>
                     <IoMdMenu className='text-white text-[1.3rem]' onClick={onSide} />
-                    <h1 className='text-white text-[1.5rem]  bg-black'>Mirac</h1>
+                    <h1 className='text-white text-[1.5rem]  bg-black'>MiracShop</h1>
                 </div>
                 <div className='p-[.5rem] relative '>
-                    <input type="text" placeholder='بحث...' className='w-full rounded-3xl h-[2.6rem] pr-[1.3rem] outline-none ' />
+                    <input type="text" placeholder='بحث...' className='w-full rounded-3xl h-[2.6rem] pr-[1.3rem] boxSearch outline-none ' />
                     <div className=' absolute top-0 left-[1rem] rounded-2xl flex items-center p-[1rem] bg-black h-[2rem] mt-[.8rem]'>
                         <CiSearch className=' text-white text-[1.5rem] ' />
                     </div>
                 </div>
             </div>
-            {/* 
-            <div className='p-4 pt-0'>
-                <ul className=' text-white flex gap-4'>
-                    <li className='border-b-2 border-white pb-1'>الجميع</li>
-                    <li>طقم</li>
-                    <li>اليد و العنق</li>
-                    <li>نبالة</li>
-                    <li>براسلي</li>
-                    <li>كورميط</li>
-                </ul>
-            </div> */}
 
 
             <div className='flex justify-between p-4'>
@@ -129,12 +124,23 @@ const Navbar = () => {
 
 
 
-            <div className='h-[2rem] bg-black'>
+            <div className='p-2 bg-black  text-white flex flex-col '>
+                <p className='text-center mb-2'>تحميل التطبيق</p>
+                <div className='p-3 bg-white rounded-xl text-black text-center '>
+                    <h1 className=' text-[.8rem]'>جرب تحميل لتحصل على افضل العروض و اعلاع على منتجاتنا المتنوعة و توصل بي أحدث العروض</h1>
+                    <div className='w-[10rem] rounded-xl box bg-primary hover:bg-orange-500 select-none mx-auto mt-2 flex gap-2 items-center p-2'>
+                        <div className='w-[2.5rem] h-[2.5rem] bg-black rounded-xl flex justify-center items-center'>
+                            <p className='text-white text-[.9rem] '>MS</p>
+                        </div>
+                        <p className='text-white font-semibold'>تحميل التطبيق</p>
+                    </div>
+                </div>
+
 
             </div>
 
-            <div className='p-2  bg-[#ffffff]'>
-                <div className='bg-[#f7e5cf]'>
+            <div className='p-2  bg-[#ffffff] '>
+                <div className='bg-[#f7e5cf] boxSearch'>
                     <div className='w-full h-[5rem]  flex items-center '>
                         <div className='w-full flex items-center gap-3 p-4'>
                             <FaHandshake className='text-[2rem]' />

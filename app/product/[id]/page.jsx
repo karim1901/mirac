@@ -12,6 +12,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 import SlideImg from '../_components/slideImg';
 import Qty from '../_components/Qty';
 import Form from '../_components/form';
+import ProductItem from '../_components/productItem';
 
 const Product = () => {
 
@@ -67,16 +68,7 @@ const Product = () => {
                         <div>
                             <SlideImg imgs={product[1].imgs} />
                         </div>
-                        <div className='my-3  flex  gap-2 '>
-                            {
-                                product[1].imgs.map((item) => {
-                                    return <Image src={item} width={100} height={100} className='w-[3rem]  h-[3rem] object-cover border-2 border-primary rounded-sm p-[.5px] ' alt="star" />
-                                })
-                            }
-                            {/* <Image src="/images/louit2.jpg" width={100} height={100} className='w-[3rem]  h-[3rem] object-cover border-2 border-primary rounded-sm p-[.5px] ' alt="star" />
-            <Image src="/images/louit3.jpg" width={100} height={100} className='w-[3rem]  h-[3rem] object-cover border-2 border-primary rounded-sm p-[.5px] ' alt="star" /> */}
-                            {/* <Image src="/images/pro1111.jpg" width={100} height={100} className='w-[3rem]  h-[3rem] object-cover border-2 border-primary rounded-sm p-[.5px] ' alt="star"  /> */}
-                        </div>
+                        <ProductItem product={product} />
                     </div>
                 </div>
 
@@ -95,7 +87,7 @@ const Product = () => {
                         <span dangerouslySetInnerHTML={{ __html: product[1].description }} />
 
                         <div>
-                            <Image src="/img/cado.png" width={100} height={100} className='w-[5rem]  h-[5rem] object-cover border-2 border-primary rounded-sm p-[.5px] ' alt="star" />
+                            <img src="/img/cado.png" className='w-[5rem]  h-[5rem] object-cover border-2 border-primary rounded-sm p-[.5px] ' alt="star" />
                             <p>باضافة الى هدية</p>
                         </div>
                     </div>
@@ -156,21 +148,15 @@ const Product = () => {
                         <p className="text-[.7rem] font-[300]">عرض محدود</p>
                     </div>
 
-                    <div className='my-3 px-3 flex gap-2'>
-                        {
-                            product[1].imgs.map((item) => {
-                                return <Image src={item} width={100} height={100} className='w-[3rem]  h-[3rem] object-cover border-2 border-primary rounded-sm p-[.5px] ' alt="star" />
-                            })
-                        }
+                    <ProductItem product={product} />
 
-                    </div>
 
                     <div className="px-3">
                         {/* <h1 className="text-[1.5rem] font-[300] " dir="rtl">{product[index].description}</h1> */}
                         <h1 className="text-[1.5rem] font-[300] " dir="rtl"><span dangerouslySetInnerHTML={{ __html: product[1].description }} /></h1>
 
                         <div>
-                            <Image src="/img/cado.png" width={100} height={100} className='w-[5rem]  h-[5rem] object-cover border-2 border-primary rounded-sm p-[.5px] ' alt="star" />
+                            <img src="/img/cado.png"  className='w-[5rem]  h-[5rem] object-cover border-2 border-primary rounded-sm p-[.5px] ' alt="star" />
                             <p className="text-[1.3rem]">باضافة الى هدية</p>
                         </div>
                     </div>
@@ -224,7 +210,7 @@ const Product = () => {
             <div className="flex flex-col ">
                 {
                     product[1].imgs.map((item, index) => {
-                        return <Image src={item} key={index} width={1500} height={500} className=" object-cover" />
+                        return <img src={item} key={index} className=" object-cover" />
                     })
                 }
 
