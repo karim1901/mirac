@@ -21,7 +21,7 @@ import Head from "next/head";
 
 export async function generateMetadata({ params }) {
     try {
-      const res = await fetch(`http://localhost:3000/api/admin/product/${params.id}`);
+      const res = await fetch(`https://miracs.vercel.app/api/admin/product/${params.id}`);
       if (!res.ok) return { title: "Product" };
       const product = await res.json();
   
