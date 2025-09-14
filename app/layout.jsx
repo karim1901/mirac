@@ -15,6 +15,9 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en" dir="rtl">
+      <head>
+        <link rel="icon" type="image/svg+xml" href="/icons/asc192.png" />
+      </head>
       <body className={`${inter.className} select-none`  }>
         <Navbar/>
         {children}
