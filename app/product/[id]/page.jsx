@@ -17,6 +17,7 @@ import axios from 'axios';
 import ClickWhatsapp from '../_components/clickWhatsapp';
 
 import Head from "next/head";
+import ScrollY from '@/app/_components/ScrollY';
 
 
 export async function generateMetadata({ params }) {
@@ -86,7 +87,7 @@ const Product = async ({ params }) => {
 
     return (
         <>
-
+            <ScrollY y={245} />
             <Head>
                 <title>{product.title}</title>
                 <meta name="description" content={product.description?.slice(0, 150)} />

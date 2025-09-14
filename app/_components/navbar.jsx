@@ -24,9 +24,18 @@ const Navbar = () => {
     const refright = useRef(null)
 
 
+    
+
     useEffect(() => {
         console.log(refLift.current)
         console.log(refright.current)
+
+
+        // window.addEventListener("scroll",()=>{
+        //     console.log(window.scrollY)
+        // })
+
+
     }, [])
 
 
@@ -179,7 +188,7 @@ const Navbar = () => {
                         <h1 className=' text-[.8rem]'>جرب تحميل لتحصل على افضل العروض و اعلاع على منتجاتنا المتنوعة و توصل بي أحدث العروض</h1>
                         <div className='w-[10rem] rounded-xl box bg-primary hover:bg-orange-500 select-none mx-auto mt-2 flex gap-2 items-center p-2' onClick={ handleInstallClick}>
                             <div className='w-[2.5rem] h-[2.5rem] bg-black rounded-xl flex justify-center items-center'>
-                                <p className='text-white text-[.9rem] '>MS</p>
+                                <img src="/icons/logo192.png" className='text-white r text-[.9rem] '/>
                             </div>
                             <p className='text-white font-semibold'>تحميل التطبيق</p>
                         </div>
