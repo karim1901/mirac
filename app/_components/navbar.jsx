@@ -46,11 +46,29 @@ const Navbar = () => {
     }, [])
 
 
+    const [deferredPrompt, setDeferredPrompt] = useState(null);
+    const [isVisible, setIsVisible] = useState(false);
+
+    const handleInstallClick = async () => {
+        if (!deferredPrompt) return;
+
+        deferredPrompt.prompt(); // يظهر نافذة التثبيت
+        const choiceResult = await deferredPrompt.userChoice;
+
+        if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the install prompt');
+            setIsVisible(false); // نخفي الزر بعد التثبيت
+        } else {
+            console.log('User dismissed the install prompt');
+        }
+
+        setDeferredPrompt(null);
+    };
+
     return (
         <div className=''>
 
-
-            <div className={`${path.split("/")[1]=="admin" && "hidden"}`}>
+            <div className={`${path.split("/")[1] == "admin" && "hidden"}`}>
 
 
                 <div ref={refLift} className={`w-[0] h-full fixed z-50 bg-black duration-200 cursor-pointer select-none overflow-hidden`} >
@@ -77,7 +95,7 @@ const Navbar = () => {
                             <RiLoginBoxFill className='text-[1.5rem]' />
                             <p>التسجيل</p>
                         </li>
-                        <li className='flex gap-2 text-[1.3rem] px-4 p-2 hover:bg-primary'>
+                        <li className='flex gap-2 text-[1.3rem] px-4 p-2 hover:bg-primary' onClick={ handleInstallClick}>
                             <MdInstallMobile className='text-[1.5rem]' />
                             <p>تحميل التطبيق</p>
                         </li>
@@ -141,20 +159,22 @@ const Navbar = () => {
 
 
 
-                <div className='p-2 bg-black  text-white flex flex-col '>
+
+                {isVisible &&<div className='p-2 bg-black  text-white flex flex-col '>
                     <p className='text-center mb-2'>تحميل التطبيق</p>
                     <div className='p-3 bg-white rounded-xl text-black text-center '>
                         <h1 className=' text-[.8rem]'>جرب تحميل لتحصل على افضل العروض و اعلاع على منتجاتنا المتنوعة و توصل بي أحدث العروض</h1>
-                        <div className='w-[10rem] rounded-xl box bg-primary hover:bg-orange-500 select-none mx-auto mt-2 flex gap-2 items-center p-2'>
+                        <div className='w-[10rem] rounded-xl box bg-primary hover:bg-orange-500 select-none mx-auto mt-2 flex gap-2 items-center p-2' onClick={ handleInstallClick}>
                             <div className='w-[2.5rem] h-[2.5rem] bg-black rounded-xl flex justify-center items-center'>
                                 <p className='text-white text-[.9rem] '>MS</p>
                             </div>
                             <p className='text-white font-semibold'>تحميل التطبيق</p>
                         </div>
                     </div>
-
-
                 </div>
+                }
+
+
 
                 <div className='p-2  bg-[#ffffff] '>
                     <div className='bg-[#f7e5cf] boxSearch'>
@@ -180,7 +200,7 @@ const Navbar = () => {
             </div>
 
 
-            <div className={`${!(path.split("/")[1]=="admin") && "hidden"}`} dir='ltr'>
+            <div className={`${!(path.split("/")[1] == "admin") && "hidden"}`} dir='ltr'>
                 <div>
                     <h1>Admin</h1>
                 </div>
