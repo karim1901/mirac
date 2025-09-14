@@ -57,7 +57,7 @@ const Navbar = () => {
 
         if (choiceResult.outcome === 'accepted') {
             console.log('User accepted the install prompt');
-            setIsVisible(false); // نخفي الزر بعد التثبيت
+            setIsVisible(true); // نخفي الزر بعد التثبيت
         } else {
             console.log('User dismissed the install prompt');
         }
@@ -160,7 +160,7 @@ const Navbar = () => {
 
 
 
-                {isVisible &&<div className='p-2 bg-black  text-white flex flex-col '>
+                {!isVisible && <div className='p-2 bg-black  text-white flex flex-col '>
                     <p className='text-center mb-2'>تحميل التطبيق</p>
                     <div className='p-3 bg-white rounded-xl text-black text-center '>
                         <h1 className=' text-[.8rem]'>جرب تحميل لتحصل على افضل العروض و اعلاع على منتجاتنا المتنوعة و توصل بي أحدث العروض</h1>
