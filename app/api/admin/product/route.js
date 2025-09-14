@@ -1,0 +1,129 @@
+// استيراد المكتبات والوحدات اللازمة
+import { NextResponse } from "next/server";
+import { v2 as cloudinary } from "cloudinary";
+
+import { Buffer } from 'buffer';
+import { connectDB } from "@/utils/connectDb";
+import Product from "@/model/product";
+
+ connectDB()
+
+// تكوين Cloudinary باستخدام البيانات المخزنة في متغيرات البيئة
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+// دالة لرفع الملف إلى Cloudinary
+const uploadToCloudinary = (fileBuffer, fileName) => {
+  return new Promise((resolve, reject) => {
+    // إنشاء مسار تحميل إلى Cloudinary مع الإعدادات المحددة
+    const uploadStream = cloudinary.uploader.upload_stream({
+      invalidate: true,
+      resource_type: "auto",
+      filename_override: fileName,
+      folder: "products-images",
+      use_filename: true,
+    }, (error, result) => {
+      if (error) reject(error);
+      else resolve(result);
+    });
+
+    // إرسال محتوى الملف إلى مسار التحميل
+    uploadStream.end(fileBuffer);
+  });
+};
+
+// دالة لمعالجة تحميل الصور وبيانات السيارة
+const uploadImg = async (req) => {
+  try {
+    // استخراج البيانات من الطلب
+    const formData = await req.formData();
+    const files = formData.getAll('files');
+
+    // التحقق من وجود ملفات للتحميل
+    if (files.length === 0) {
+      return NextResponse.json({
+        success: false,
+        message: "No files uploaded."
+      });
+    }
+
+    // رفع كل ملف إلى Cloudinary والحصول على الروابط
+    const fileResponses = await Promise.all(files.map(async (file) => {
+      const buffer = Buffer.from(await file.arrayBuffer());
+      const timestamp = Date.now();
+      const originalName = file.name;
+      const uniqueName = `${originalName.split('.')[0]}-${timestamp}`;
+      const result = await uploadToCloudinary(buffer, uniqueName);
+      return result.secure_url;
+    }));
+
+    // استخراج ومعالجة بيانات السيارة
+    const data = formData.get('data');
+    const productInfo = JSON.parse(data);
+
+    // إرجاع بيانات السيارة مع روابط الصور
+    return {
+      ...productInfo,
+      images: fileResponses,
+      thumbnail: fileResponses[0]
+    };
+  } catch (error) {
+    console.error('Error uploading files:', error);
+    throw error;
+  }
+};
+
+// الاتصال بقاعدة البيانات
+
+// معالج طلبات POST
+export async function POST(req) {
+  try {
+    // const verificationResult = await verifyTokenAdmin(req);
+    // if (verificationResult instanceof NextResponse) {
+    //   return verificationResult; // This is an error response
+    // }
+    // تحميل الصور ومعالجة بيانات السيارة
+    const data = await uploadImg(req);
+    try {
+      // إنشاء سجل جديد للسيارة في قاعدة البيانات
+      const car = await Product.create(data);
+      return NextResponse.json({ message: "Create product successfully" }, { status: 200 });
+    } catch (err) {
+      console.error(err.message);
+      return NextResponse.json({ message: err.message, data: data });
+    }
+  } catch (error) {
+    console.error(error.message);
+    return NextResponse.json({ message: error.message });
+  }
+}
+
+
+
+
+
+export const GET = async(req)=>{
+
+    try{
+
+
+        const result = await Product.find()
+
+        // const cars = result.map(item=>{
+        //   item.favourites = []
+        //   return item
+        // })
+
+        return NextResponse.json(result)
+
+    }catch (error) {
+
+        console.error(error.message);
+        return NextResponse.json({ message: error.message }, { status: 500 });
+      }
+
+}
+

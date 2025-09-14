@@ -23,7 +23,7 @@ const SlideImg = ({ imgs }) => {
             src={img}
             width={700}
             height={700}
-            className="w-full min-h-[25rem] h-[25rem] sm:h-fit lg:h-[33rem] object-cover"
+            className="w-full min-h-[30rem] h-[25rem] sm:h-fit lg:h-[33rem] object-cover"
             alt="producImage"
           />
         </SwiperSlide>
