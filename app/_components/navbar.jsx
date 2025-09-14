@@ -46,10 +46,23 @@ const Navbar = () => {
     }, [])
 
 
+    useEffect(() => {
+        // نحفظ الحدث قبل التثبيت
+        const handler = (e) => {
+          e.preventDefault(); // يمنع ظهور الحوار التلقائي
+          setDeferredPrompt(e);
+        };
+        window.addEventListener("beforeinstallprompt", handler);
+    
+        return () => window.removeEventListener("beforeinstallprompt", handler);
+      }, []);
+
     const [deferredPrompt, setDeferredPrompt] = useState(null);
     const [isVisible, setIsVisible] = useState(false);
 
     const handleInstallClick = async () => {
+
+        // console.log(deferredPrompt)
         if (!deferredPrompt) return;
 
         deferredPrompt.prompt(); // يظهر نافذة التثبيت
