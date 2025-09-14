@@ -6,7 +6,7 @@ const ClickWhatsapp = ({product}) => {
 
     const phoneNumber = "212774848821"
 
-    const message = `$ ${product.title} مرحبًا، أنا مهتم  https://miracs.vercel.app/product/${product._id}`
+    const message = ` ${product.title} مرحبًا، أنا مهتم  https://miracs.vercel.app/product/${product._id}`
 
     const handleClick = () => {
 

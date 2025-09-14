@@ -18,6 +18,37 @@ import ClickWhatsapp from '../_components/clickWhatsapp';
 
 import Head from "next/head";
 
+
+export async function generateMetadata({ params }) {
+    try {
+      const res = await fetch(`http://localhost:3000/api/admin/product/${params.id}`);
+      if (!res.ok) return { title: "Product" };
+      const product = await res.json();
+  
+      return {
+        description: product.description?.slice(0, 150) || "",
+        icons: {
+          icon: product.thumbnail // رابط للصورة (يمكن أن يكون رابط كامل أو مسار داخل public)
+        },
+        openGraph: {
+          title: product.title,
+          description: product.description?.slice(0,150),
+          images: [product.thumbnail],
+        },
+        twitter: {
+          card: "summary_large_image",
+          images: [product.thumbnail],
+        },
+      };
+    } catch (err) {
+      return { title: "منتوج" };
+    }
+  }
+
+
+
+
+
 const Product = async ({ params }) => {
 
     let product = []
