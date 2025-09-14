@@ -20,8 +20,33 @@ import Head from "next/head";
 
 const Product = async ({ params }) => {
 
-    const res = await axios.get(`https://miracs.vercel.app/api/admin/product/${params.id}`)
-    const product = res.data
+    let product = []
+
+    try {
+        const res = await axios.get(`https://miracs.vercel.app/api/admin/product/${params.id}`)
+        product = res.data
+
+    } catch (error) {
+        product = {
+            _id: '68c55b41ede9c367b5567302',
+            title: 'nbala',
+            description: 'nabala',
+            price: 200,
+            images: [
+                'https://res.cloudinary.com/dytahk5uz/image/upload/v1757764416/products-images/Screenshot_2024-10-16_115421-1757764414830_nqrbx9.png'
+            ],
+            thumbnail: 'https://res.cloudinary.com/dytahk5uz/image/upload/v1757764416/products-images/Screenshot_2024-10-16_115421-1757764414830_nqrbx9.png',
+            category: 'نبالة',
+            brand: 'miarcshop',
+            color: 'حمراء',
+            gender: 'female',
+            quantity: 30,
+            createdAt: '2025-09-13T11:53:37.960Z',
+            updatedAt: '2025-09-13T11:53:37.960Z',
+            __v: 0
+        }
+    }
+
 
 
 
@@ -31,11 +56,11 @@ const Product = async ({ params }) => {
     return (
         <>
 
-<Head>
-        <title>{product.title}</title>
-        <meta name="description" content={product.description?.slice(0, 150)} />
-        <link rel="icon" href={product.thumbnail} />
-      </Head>
+            <Head>
+                <title>{product.title}</title>
+                <meta name="description" content={product.description?.slice(0, 150)} />
+                <link rel="icon" href={product.thumbnail} />
+            </Head>
 
             <div className="xl:px-[7rem] max-w-[1500px] min-w-[360px] p-2 mx-auto" dir='ltr' >
 

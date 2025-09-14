@@ -10,9 +10,60 @@ import axios from 'axios';
 
 const Home = async() => {
 
-    const res = await axios.get("https://miracs.vercel.app/api/admin/product")
+    let products = []
+    
+    try {
+        const res = await axios.get("https://miracs.vercel.app/api/admin/product")
 
-    const products =res.data
+         products =res.data
+    
+    } catch (error) {
+         products = [
+            {
+              _id: '68c55b41ede9c367b5567302',
+              title: 'nbala',
+              description: 'nabala',
+              price: 200,
+              images: [
+                'https://res.cloudinary.com/dytahk5uz/image/upload/v1757764416/products-images/Screenshot_2024-10-16_115421-1757764414830_nqrbx9.png'
+              ],
+              thumbnail: 'https://res.cloudinary.com/dytahk5uz/image/upload/v1757764416/products-images/Screenshot_2024-10-16_115421-1757764414830_nqrbx9.png',
+              category: 'نبالة',
+              brand: 'miarcshop',
+              color: 'حمراء',
+              gender: 'female',
+              quantity: 30,
+              createdAt: '2025-09-13T11:53:37.960Z',
+              updatedAt: '2025-09-13T11:53:37.960Z',
+              __v: 0
+            },
+            {
+              _id: '68c5cab8ede9c367b5567325',
+              title: 'نبالة ',
+              description: 'جبت لكم هاد الباك ديال نبالة بالخاتم ديالها بديل الذهب الأصلي 🔥\n' +
+                '\n' +
+                '✅الفنسيون ديال الذهب\n' +
+                '\n' +
+                '🚑مكديرش الحساسية\n' +
+                '💦مكتخسر لا بالماء لا ريحة 💯\n' +
+                '🚚التوصيل مجانا لباب الدار',
+              price: 200,
+              images: [
+                'https://res.cloudinary.com/dytahk5uz/image/upload/v1757792952/products-images/nbala1-1757792951394_kieisy.jpg'
+              ],
+              thumbnail: 'https://res.cloudinary.com/dytahk5uz/image/upload/v1757792952/products-images/nbala1-1757792951394_kieisy.jpg',
+              category: 'نبالة',
+              brand: 'miarcshop',
+              color: 'حمراء',
+              gender: 'female',
+              quantity: 30,
+              createdAt: '2025-09-13T19:49:12.959Z',
+              updatedAt: '2025-09-13T19:49:12.959Z',
+              __v: 0
+            }
+          ]
+    }
+
 
 
     return (
