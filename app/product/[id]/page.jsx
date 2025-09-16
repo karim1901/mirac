@@ -94,7 +94,7 @@ const Product = async ({ params }) => {
                 <link rel="icon" href={product.thumbnail} />
             </Head>
 
-            <div className="xl:px-[7rem] max-w-[1500px] min-w-[360px] p-2 mx-auto" dir='ltr' >
+            <div className="xl:px-[7rem] max-w-[1500px] min-w-[360px] p-2 mx-auto"  dir='rtl' >
 
                 <ClickWhatsapp product={product} />
 
@@ -112,7 +112,7 @@ const Product = async ({ params }) => {
 
                     <div className=" ">
 
-                        <div className="flex justify-between px-4 bg-gray-300 py-1 ">
+                        <div className="flex justify-between px-4 bg-gray-300 py-1 " dir='ltr'>
                             <div className="font-semibold flex items-center gap-1 text-[.8rem]">
                                 <LiaShippingFastSolid />
                                 <h1>شحن مجاني لك</h1>
@@ -171,13 +171,16 @@ const Product = async ({ params }) => {
                     </div>
                 </div>
 
+
+                {/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+
                 <div className='md:hidden'>
 
                     <SlideImg imgs={product.images} />
 
                     <div className='   p-[0.1px] '>
 
-                        <div className="flex justify-between px-4 bg-gray-100 py-1">
+                        <div className="flex justify-between px-4 bg-gray-100 py-1" dir='ltr'>
                             <div className="font-semibold flex items-center gap-1 text-[.8rem]">
                                 <LiaShippingFastSolid />
                                 <h1>شحن مجاني لك</h1>
@@ -200,7 +203,7 @@ const Product = async ({ params }) => {
                         </div>
 
 
-                        <div className="flex justify-between items-center px-3">
+                        <div className="flex justify-between items-center px-3" dir='ltr'>
 
                             <div className=' flex items-center  gap-2'>
                                 <h1 className='font-semibold text-primary text-[1.4rem] '>{product.price - 1} DH </h1>
@@ -236,7 +239,7 @@ const Product = async ({ params }) => {
 
 
 
-                        {/* <Form qty={1} product={product.product} /> */}
+                        <Form qty={1} product={product.product} />
 
                     </div>
 

@@ -1,4 +1,3 @@
-export const dynamic = 'force-dynamic';
 import Product from "@/model/product";
 import { connectDB } from "@/utils/connectDb";
 import { NextResponse } from "next/server";
