@@ -21,7 +21,7 @@ const ClickWhatsapp = ({product}) => {
 
 
     return (
-        <div className="fixed z-[40] bottom-[3rem] ml-[2rem] bg-green-500 w-[3.5rem] h-[3.5rem] flex items-center justify-center rounded-full border-2 border-green-500 " onClick={handleClick}>
+        <div className="fixed z-[40] bottom-[3rem] mr-[2rem] bg-green-500 w-[3.5rem] h-[3.5rem] flex items-center justify-center rounded-full border-2 border-green-500 " onClick={handleClick}>
             <FaWhatsapp
                 style={{ fontSize: '40px', color: 'white', cursor: 'pointer' }}
             />

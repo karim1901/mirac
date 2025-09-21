@@ -15,6 +15,7 @@ import { RiLoginBoxFill } from "react-icons/ri";
 import { MdInstallMobile } from "react-icons/md";
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
 
 const Navbar = () => {
@@ -26,6 +27,26 @@ const Navbar = () => {
     const refright = useRef(null)
 
     const router = useRouter()
+
+    const [categories, setCategories] = useState([])
+
+
+
+
+    const getCategories = async () => {
+        try {
+
+            const res = await axios.get("/api/admin/category")
+
+            setCategories(res.data.data)
+
+
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
+
+
 
 
 
@@ -49,7 +70,7 @@ const Navbar = () => {
 
     useEffect(() => {
 
-
+        getCategories()
         // نحفظ الحدث قبل التثبيت
         const handler = (e) => {
             e.preventDefault(); // يمنع ظهور الحوار التلقائي
@@ -164,31 +185,16 @@ const Navbar = () => {
                 </div>
 
 
-                <div className='flex justify-between p-4'>
-                    <div className='flex flex-col items-center'>
-                        <Image src={"/img/photo1.png"} width={50} height={50} />
-                        <p>نبالة</p>
-                    </div>
-                    <div className='flex flex-col items-center'>
-                        <Image src={"/img/img5.jpg"} className='rounded-full' width={50} height={50} />
-                        <p>رادكو</p>
-                    </div>
-                    <div className='flex flex-col items-center'>
-                        <Image src={"/img/photo3.png"} width={50} height={50} />
-                        <p>سوطوار</p>
-                    </div>
-                    <div className='flex flex-col items-center'>
-                        <Image src={"/img/photo4.png"} width={50} height={50} />
-                        <p>براسلي</p>
-                    </div>
-                    <div className='flex flex-col items-center'>
-                        <Image src={"/img/photo6.png"} width={50} height={50} />
-                        <p>طقم</p>
-                    </div>
-                    <div className='flex flex-col items-center'>
-                        <Image src={"/img/photo5.png"} width={50} height={50} />
-                        <p>أطفال</p>
-                    </div>
+                <div className='flex gap-4 m-4 overflow-hidden overflow-x-scroll no-scrollbar  '>
+                    {
+                        categories.map(item => {
+                            return <div className='flex flex-col items-center'>
+                                <img src={item.thumbnail} className='min-w-[3.5rem] w-[3.5rem] min-h-[3.5rem] h-[3.5rem] object-cover rounded-full' />
+                                <p>{item.name}</p>
+                            </div>
+                        })
+                    }
+                    
                 </div>
 
 

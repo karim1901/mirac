@@ -8,11 +8,12 @@ import Loading from "@/app/loading"
 
 const Form = ({qty,product}) => {
   const [info, setInfo] = useState({
-    product:product,
-    name: "",
+    nameProduct:product,
+    nameClient: "",
     phone: "",
     city: "",
-    address: ""
+    address: "",
+    quantity:qty
   })
 
 
@@ -24,11 +25,11 @@ const Form = ({qty,product}) => {
 
   const selle = async() => {
     setLoad(true)
-    if (info.name =="" || info.phone =="" || info.city =="" || info.address =="" ) {
+    if (info.nameClient =="" || info.phone =="" || info.city =="" || info.address =="" ) {
       setEmptys(true)
     }else{
 
-      await axios.post("/api/order",{...info,qty}).then(()=>{
+      await axios.post("/api/admin/order",{...info,qty}).then(()=>{
         router.push("/successfully")
 
       }).catch(error=>{
@@ -162,7 +163,7 @@ const Form = ({qty,product}) => {
       {empys && <p className="px-4 text-center text-red-500">يجب ملئ جميع الخانات</p>}
       <form className="flex flex-col gap-4 justify-center px-4 mt-4">
 
-        <input type="text" placeholder="اسم" name="name" className="inputForm" value={info.name} onChange={({ target }) => setInfo({ ...info, [target.name]: target.value })} />
+        <input type="text" placeholder="اسم" name="name" className="inputForm" value={info.nameClient} onChange={({ target }) => setInfo({ ...info, [target.name]: target.value })} />
         <input type="text" placeholder="رقم الهاتف" name="phone" className="inputForm" value={info.phone} onChange={({ target }) => setInfo({ ...info, [target.name]: target.value })} />
         <input type="text" placeholder="المدينة" name="city" className="inputForm" value={info.city} onChange={({ target }) => setInfo({ ...info, [target.name]: target.value })} />
         <input type="text" placeholder="العنوان" name="address" className="inputForm" value={info.address} onChange={({ target }) => setInfo({ ...info, [target.name]: target.value })} />

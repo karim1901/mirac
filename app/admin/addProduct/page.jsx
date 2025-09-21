@@ -233,7 +233,7 @@ const AddPrduct = () => {
 
                     <div className='mt-4 flex flex-col'>
                         <label htmlFor="" className='font-semibold '>Description </label>
-                        <textarea id="" className='h-[5rem] rounded-sm pl-4 pt-2 line-clamp-2 outline-none bg-black4 resize-none border-[.5px] border-primary' name='description' value={infoProduct.description} onChange={({ target }) => setInfoProduct(prev => ({ ...prev, [target.name]: target.value }))}></textarea>
+                        <textarea id="" className='h-[5rem] rounded-sm pl-4 pt-2 line-clamp-2 outline-none bg-black4 resize-none border-[.5px] border-primary ' name='description' value={infoProduct.description} onChange={({ target }) => setInfoProduct(prev => ({ ...prev, [target.name]: target.value }))}></textarea>
                     </div>
                     <button className='bg-primary text-white h-[2.5rem] rounded-md w-full font-semibold mt-4 mb-[10rem]'>Create New Product</button>
                 </form>

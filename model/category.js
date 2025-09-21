@@ -5,10 +5,15 @@ const { Schema } = mongoose
 
 
 const schemaCategory  = new Schema({
+    
     name:{
         type:String,
         required:true,
         unique:[true,"category name required"]
+    },
+    thumbnail:{
+        type:String,
+        required:[true,"thumbnail is required"]
     }
 },{timestamps:true})
 
