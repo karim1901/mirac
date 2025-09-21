@@ -172,7 +172,7 @@ const Product = async ({ params }) => {
                             </div>
                         </div>
 
-                        <Form qty={1} product={product.title} />
+                        <Form qty={1} product={product.nameProduct} priceProduct={product.price} />
                     </div>
                 </div>
 
@@ -245,7 +245,7 @@ const Product = async ({ params }) => {
 
 
 
-                        <Form qty={1} product={product.title} />
+                        <Form qty={1} product={product.nameProduct} priceProduct={product.price} />
 
                     </div>
 
@@ -280,7 +280,7 @@ const Product = async ({ params }) => {
 
 
 
-                    <Form qty={1} product={product.title} />
+                    <Form qty={1} product={product.nameProduct} priceProduct={product.price} />
 
 
                 </div>

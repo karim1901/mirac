@@ -20,7 +20,8 @@ const AddPrduct = () => {
         description: '',
         gender: "",
         color:"",
-        quantity:""
+        quantity:"",
+        nameProduct:""
     });
 
     const [brands, setBrands] = useState([])
@@ -85,7 +86,8 @@ const AddPrduct = () => {
                 description: '',
                 gender: "",
                 color:"",
-                quantity:""
+                quantity:"",
+                nameProduct:""
             });
 
             setLoading(false)
@@ -164,6 +166,11 @@ const AddPrduct = () => {
                         <div className='flex flex-col'>
                             <label htmlFor="" className='font-semibold '>Title</label>
                             <input type="text" className='h-[2.5rem] rounded-sm pl-4 outline-none bg-black4  border-[.5px] border-primary' name='title' value={infoProduct.title} onChange={({ target }) => setInfoProduct(prev => ({ ...prev, [target.name]: target.value }))} />
+                        </div>
+
+                        <div className='flex flex-col'>
+                            <label htmlFor="" className='font-semibold '>Name Product</label>
+                            <input type="text" className='h-[2.5rem] rounded-sm pl-4 outline-none bg-black4  border-[.5px] border-primary' name='nameProduct' value={infoProduct.nameProduct} onChange={({ target }) => setInfoProduct(prev => ({ ...prev, [target.name]: target.value }))} />
                         </div>
 
                         <div className='flex flex-col '>

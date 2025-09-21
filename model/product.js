@@ -45,6 +45,10 @@ const schemaProduct  = new Schema({
         type:Number,
         min:1
     },
+    nameProduct:{
+        type:String,
+        required:[true , "nameProduct is required"]
+    }
 
 },{timestamps:true})
 

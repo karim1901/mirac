@@ -5,15 +5,17 @@ import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { RiCheckboxCircleFill } from "react-icons/ri"
 import Loading from "@/app/loading"
+import { resolveValue } from "react-hot-toast"
 
-const Form = ({qty,product}) => {
+const Form = ({qty,product,priceProduct}) => {
   const [info, setInfo] = useState({
     nameProduct:product,
     nameClient: "",
     phone: "",
     city: "",
     address: "",
-    quantity:qty
+    quantity:qty,
+    price:priceProduct
   })
 
 
@@ -29,7 +31,7 @@ const Form = ({qty,product}) => {
       setEmptys(true)
     }else{
 
-      await axios.post("/api/admin/order",{...info,qty}).then(()=>{
+      await axios.post("/api/admin/order",{...info,qty}).then((res)=>{
         router.push("/successfully")
 
       }).catch(error=>{
@@ -163,7 +165,7 @@ const Form = ({qty,product}) => {
       {empys && <p className="px-4 text-center text-red-500">يجب ملئ جميع الخانات</p>}
       <form className="flex flex-col gap-4 justify-center px-4 mt-4">
 
-        <input type="text" placeholder="اسم" name="name" className="inputForm" value={info.nameClient} onChange={({ target }) => setInfo({ ...info, [target.name]: target.value })} />
+        <input type="text" placeholder="اسم" name="nameClient" className="inputForm" value={info.nameClient} onChange={({ target }) => setInfo({ ...info, [target.name]: target.value })} />
         <input type="text" placeholder="رقم الهاتف" name="phone" className="inputForm" value={info.phone} onChange={({ target }) => setInfo({ ...info, [target.name]: target.value })} />
         <input type="text" placeholder="المدينة" name="city" className="inputForm" value={info.city} onChange={({ target }) => setInfo({ ...info, [target.name]: target.value })} />
         <input type="text" placeholder="العنوان" name="address" className="inputForm" value={info.address} onChange={({ target }) => setInfo({ ...info, [target.name]: target.value })} />

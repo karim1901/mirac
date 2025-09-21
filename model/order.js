@@ -28,8 +28,11 @@ const schemaOrder  = new Schema({
     quantity:{
         type:String,
         required:[true,"quantity is required"]
+    },
+    price:{
+        type:Number,
+        required:[true , "price is required"]
     }
-
 },{timestamps:true})
 
 
