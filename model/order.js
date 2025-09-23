@@ -32,6 +32,15 @@ const schemaOrder  = new Schema({
     price:{
         type:Number,
         required:[true , "price is required"]
+    },
+    status:{
+        type:String,
+        enum:["confirm","new","waite","cancel"],
+        default:"new"
+    },
+    thumbnail:{
+        type:String,
+        required:[true , "thumbnail is required"]
     }
 },{timestamps:true})
 
