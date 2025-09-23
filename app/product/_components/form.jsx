@@ -7,7 +7,7 @@ import { RiCheckboxCircleFill } from "react-icons/ri"
 import Loading from "@/app/loading"
 import { resolveValue } from "react-hot-toast"
 
-const Form = ({qty,product,priceProduct}) => {
+const Form = ({qty,product,priceProduct,thumbnail}) => {
   const [info, setInfo] = useState({
     nameProduct:product,
     nameClient: "",
@@ -15,7 +15,8 @@ const Form = ({qty,product,priceProduct}) => {
     city: "",
     address: "",
     quantity:qty,
-    price:priceProduct
+    price:priceProduct,
+    thumbnail:thumbnail
   })
 
 
