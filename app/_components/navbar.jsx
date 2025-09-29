@@ -120,6 +120,12 @@ const Navbar = () => {
         setDeferredPrompt(null);
     };
 
+
+    const goToLink = (link)=>{
+        router.push(link)
+        offSide()
+    }
+
     return (
         <div className=''>
 
@@ -134,15 +140,15 @@ const Navbar = () => {
                         <h1 className=' text-[.8rem] px-4 py-2 w-[300px] '>جرب تحميل لتحصل على افضل العروض و اعلاع على منتجاتنا المتنوعة و توصل بي أحدث العروض</h1>
                     </div>
                     <ul className=" bg-black text-white ">
-                        <li className='flex gap-2 text-[1.3rem] px-4 p-2 hover:bg-primary'>
+                        <li className='flex gap-2 text-[1.3rem] px-4 p-2 hover:bg-primary' onClick={()=>{goToLink("/home")}}>
                             <FaHome className='text-[1.5rem]' />
                             <p>الصفحة الرئيسية</p>
                         </li>
-                        <li className='flex gap-2 text-[1.3rem] px-4 p-2 hover:bg-primary '>
+                        <li className='flex gap-2 text-[1.3rem] px-4 p-2 hover:bg-primary ' onClick={()=>{goToLink("/home")}}>
                             <BiSolidCategory className='text-[1.5rem]' />
                             <p>التصنيفات</p>
                         </li>
-                        <li className='flex gap-2 text-[1.3rem] px-4  p-2 hover:bg-primary'>
+                        <li className='flex gap-2 text-[1.3rem] px-4  p-2 hover:bg-primary' onClick={()=>{goToLink("/home")}}>
                             <MdOutlineOpenInNew className='text-[1.5rem]' />
                             <p>الأٌحدث</p>
                         </li>
@@ -167,7 +173,7 @@ const Navbar = () => {
                 </div>
 
                 <div className='bg-secondary'>
-                    <div className='flex justify-between items-center px-4 h-[3rem] bg-black'>
+                    <div className='flex justify-between items-center px-4 h-[3rem] bg-black' onClick={()=>{goToLink("/home")}}>
                         <IoMdMenu className='text-white text-[1.3rem]' onClick={onSide} />
                         <div className='text-white flex text-[1.3rem]  bg-black' dir='ltr'>
                             <p className='font-semibold'>M</p>

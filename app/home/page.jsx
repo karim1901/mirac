@@ -32,7 +32,7 @@ const Home = async () => {
         <div >
 
 
-            <div className='grid grid-cols-2 gap-3  p-2'>
+            <div className='grid  2xl:grid-cols-7 xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-3  p-2 mx-auto'>
                 {
                     products.map((item, index) => {
                         return <Link href={`/product/${item._id}`} key={index}><div className=' hover:shadow-md rounded-md' >
