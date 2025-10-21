@@ -40,7 +40,7 @@ const schemaOrder  = new Schema({
     },
     thumbnail:{
         type:String,
-        required:[true , "thumbnail is required"]
+        // required:[true , "thumbnail is required"]
     }
 },{timestamps:true})
 

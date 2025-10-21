@@ -13,7 +13,10 @@ export async function POST(req) {
 
 
 
+
         const order = await Order.create(data)
+        console.log(data)
+
         console.log(order)
         return NextResponse.json(order)
         
@@ -40,22 +43,22 @@ export async function GET(req){
 
 
 
-export async function PUT(req){
-    try {
+// export async function PUT(req){
+//     try {
 
-        const orders = await Order.updateMany( { $or: [{ thumbnail: { $exists: false } }, { thumbnail: "" }] },
-            {
-              $set: {
-                thumbnail:
-                  "https://res.cloudinary.com/dytahk5uz/image/upload/v1758488699/products-images/digradi0_2_-1758488696192_dpehm7.jpg",
-              },
-            })
-        const order = await Order.find()
+//         const orders = await Order.updateMany( { $or: [{ thumbnail: { $exists: false } }, { thumbnail: "" }] },
+//             {
+//               $set: {
+//                 thumbnail:
+//                   "https://res.cloudinary.com/dytahk5uz/image/upload/v1758488699/products-images/digradi0_2_-1758488696192_dpehm7.jpg",
+//               },
+//             })
+//         const order = await Order.find()
 
-        return NextResponse.json(order)
+//         return NextResponse.json(order)
         
-    } catch (error) {
-        console.log(error.message)
-        return NextResponse.json({error:error.message})
-    }
-}
+//     } catch (error) {
+//         console.log(error.message)
+//         return NextResponse.json({error:error.message})
+//     }
+// }
