@@ -194,7 +194,7 @@ const Navbar = () => {
                 <div className='flex gap-4 m-4 overflow-hidden overflow-x-scroll no-scrollbar  '>
                     {
                         categories.map(item => {
-                            return <div className='flex flex-col items-center'>
+                            return <div className='flex flex-col items-center' key={item._id}>
                                 <img src={item.thumbnail} className='min-w-[3.5rem] w-[3.5rem] min-h-[3.5rem] h-[3.5rem] object-cover rounded-full' />
                                 <p>{item.name}</p>
                             </div>
@@ -247,8 +247,9 @@ const Navbar = () => {
 
 
             <div className={`${!(path.split("/")[1] == "admin") && "hidden"}`} dir='ltr'>
-                <div>
+                <div className=' w-full p-4 flex justify-between bg-black text-white'>
                     <h1>Admin</h1>
+                    <IoMdMenu className='text-[1.3rem]' />
                 </div>
             </div>
 

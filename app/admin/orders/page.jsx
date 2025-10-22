@@ -81,7 +81,7 @@ const page = () => {
         <span className="loader"></span>
       </div>
 
-      <div className='flex gap-2 text-[.7rem] '>
+      <div className='flex justify-between text-[.8rem] '>
         <button onClick={() => { setBtn("new") }} className='focus:text-primary '>New Orders</button>
         <button onClick={() => { setBtn("confirem") }} className='focus:text-primary'>Orders Comfirmed</button>
         <button onClick={() => { setBtn("waite") }} className='focus:text-primary'>Orders Waiting</button>

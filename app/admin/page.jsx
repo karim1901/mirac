@@ -1,36 +1,19 @@
 'use client'
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function TextAreaExample() {
-  const [text, setText] = useState("");
+export default function page() {
 
-  const handleChange = (e) => {
-    setText(e.target.value);
-  };
-
-  const handleSave = () => {
-    // هنا يتم حفظ النص كما هو مع فواصل الأسطر
-    console.log("النص المحفوظ:", text);
-  };
+  const router = useRouter()
 
   return (
-    <div className="p-4 max-w-md">
-      <textarea
-        className="w-full h-40 p-2 border rounded-md whitespace-pre-wrap"
-        value={text}
-        onChange={handleChange}
-        placeholder="اكتب هنا..."
-      />
-      <button
-        onClick={handleSave}
-        className="mt-3 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
-      >
-        حفظ
-      </button>
-
-      <div className="mt-4 p-2 border rounded whitespace-pre-wrap bg-gray-50">
-        <h2 className="font-semibold mb-2">المعاينة:</h2>
-        {text || "سيظهر النص هنا مع نفس تنسيق الأسطر."}
+    <div dir="ltr" className="p-4">
+      <h1 className="">Dashborad</h1>
+      <div className="mt-4 flex flex-col gap-4">
+        <div className=" border-[1px] border-orange-400 rounded-lg p-4 hover:bg-primary hover:text-white " onClick={()=>{router.push("/admin/orders")}}>Orders</div>
+        <div className=" border-[1px] border-orange-400 rounded-lg p-4 hover:bg-primary hover:text-white" onClick={()=>{router.push("/admin/addProduct")}}>Add Product</div>
+        <div className=" border-[1px] border-orange-400 rounded-lg p-4 hover:bg-primary hover:text-white" onClick={()=>{router.push("/admin/addcategory")}}>Add category</div>
+        <div className=" border-[1px] border-orange-400 rounded-lg p-4 hover:bg-primary hover:text-white" onClick={()=>{router.push("/admin/addbrand")}}>Add Brand</div>
       </div>
     </div>
   );
