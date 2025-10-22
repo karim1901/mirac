@@ -34,10 +34,8 @@ const Form = ({qty,product,priceProduct,thumbnail}) => {
 
       await axios.post("/api/admin/order",{...info,qty}).then((res)=>{
         router.push("/successfully")
-
       }).catch(error=>{
         router.push("/error")
-        
       })
 
 
@@ -165,7 +163,6 @@ const Form = ({qty,product,priceProduct,thumbnail}) => {
       <h1 className="font-semibold px-4 ">معلومات الزبون</h1>
       {empys && <p className="px-4 text-center text-red-500">يجب ملئ جميع الخانات</p>}
       <form className="flex flex-col gap-4 justify-center px-4 mt-4">
-
         <input type="text" placeholder="اسم" name="nameClient" className="inputForm" value={info.nameClient} onChange={({ target }) => setInfo({ ...info, [target.name]: target.value })} />
         <input type="text" placeholder="رقم الهاتف" name="phone" className="inputForm" value={info.phone} onChange={({ target }) => setInfo({ ...info, [target.name]: target.value })} />
         <input type="text" placeholder="المدينة" name="city" className="inputForm" value={info.city} onChange={({ target }) => setInfo({ ...info, [target.name]: target.value })} />

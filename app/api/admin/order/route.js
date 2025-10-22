@@ -11,9 +11,6 @@ export async function POST(req) {
 
         const data = await req.json()
 
-
-
-
         const order = await Order.create(data)
         console.log(data)
 

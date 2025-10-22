@@ -16,7 +16,7 @@ const page = () => {
     try {
       const res = await axios.get("/api/admin/order")
       console.log(res.data)
-      setOrders(res.data)
+      setOrders(res.data.reverse())
       setLoade(false)
     } catch (error) {
       console.log(error.message)
@@ -78,7 +78,7 @@ const page = () => {
   return (
     <div dir='ltr' className='p-4 select-text'>
       <div className={`w-full h-screen fixed bg-[#0000001f] top-0 left-0 flex items-center justify-center ${!loade && "hidden"}`}>
-        <span class="loader"></span>
+        <span className="loader"></span>
       </div>
 
       <div className='flex gap-2 text-[.7rem] '>
