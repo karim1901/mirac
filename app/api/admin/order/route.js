@@ -47,7 +47,7 @@ export async function GET(req){
 //             {
 //               $set: {
 //                 thumbnail:
-//                   "https://res.cloudinary.com/dytahk5uz/image/upload/v1758488699/products-images/digradi0_2_-1758488696192_dpehm7.jpg",
+//                   "https://res.cloudinary.com/dytahk5uz/image/upload/v1761128408/products-images/WhatsApp_Image_2025-10-22_at_11-1761128408245_zor7gt.jpg",
 //               },
 //             })
 //         const order = await Order.find()
