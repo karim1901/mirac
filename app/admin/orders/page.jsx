@@ -43,38 +43,38 @@ const page = () => {
   const formatPhone = (phone) => {
     // إزالة أي رموز أو مسافات غير أرقام
     let digits = phone.replace(/\D/g, "");
-  
+
     // إذا بدأ بـ 0 (مثل 0715581646) → استبدله بـ 212
     if (digits.startsWith("0")) {
       digits = "212" + digits.slice(1);
     }
-  
+
     // إذا بدأ بـ 212/ أو يحتوي على '/' → نظّفه ليصبح 212XXXXXXXXX
     if (digits.startsWith("212") && digits.length > 12) {
       // في حال كان هناك رموز إضافية بعد 212
       digits = digits.slice(0, 12);
     }
-  
+
     return digits;
   };
-  
+
 
   const sendMessage = (phone) => {
     const phoneNumber = formatPhone(phone);
-  
+
     // تحقق أنه يبدأ بـ 2126 أو 2127
     if (!/^212[67]\d{7,8}$/.test(phoneNumber)) {
       toast.error("رقم غير صالح")
     }
-  
+
     const message = `سلام عليكم`;
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     if (typeof window !== "undefined") {
       window.open(url, "_blank");
     }
   };
-  
-  
+
+
   return (
     <div dir='ltr' className='p-4 select-text'>
       <div className={`w-full h-screen fixed bg-[#0000001f] top-0 left-0 flex items-center justify-center ${!loade && "hidden"}`}>
@@ -127,6 +127,19 @@ const page = () => {
                     <td>Price </td>
                     <td className='w-[20px] text-center'>:</td>
                     <td>{item.price}</td>
+                  </tr>
+                  <tr>
+                    <td>date order </td>
+                    <td className='w-[20px] text-center'>:</td>
+                    <td>
+                      {new Intl.DateTimeFormat('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                      }).format(new Date(item.createdAt))}
+                    </td>
                   </tr>
                 </thead>
               </table>
