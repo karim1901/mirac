@@ -4,7 +4,7 @@ import { LiaCartPlusSolid, LiaShippingFastSolid } from "react-icons/lia";
 import { VscVerified } from "react-icons/vsc";
 import { FaRegHandshake } from "react-icons/fa6";
 import Image from 'next/image'
-import { IoMdStar } from "react-icons/io";
+import { IoIosStar, IoMdStar } from "react-icons/io";
 
 
 
@@ -18,6 +18,8 @@ import ClickWhatsapp from '../_components/clickWhatsapp';
 
 import Head from "next/head";
 import ScrollY from '@/app/_components/ScrollY';
+import Link from 'next/link';
+import { MdOutlineAddShoppingCart } from 'react-icons/md';
 
 
 export async function generateMetadata({ params }) {
@@ -58,7 +60,7 @@ const Product = async ({ params }) => {
 
         const res = await fetch(`https://miracs.vercel.app/api/admin/product/${params.id}`, {
             cache: "no-store",          // يمنع التخزين المؤقت
-          });
+        });
 
         // const res = await axios.get(`https://miracs.vercel.app/api/admin/product/${params.id}`)
         product = await res.json();
@@ -82,6 +84,22 @@ const Product = async ({ params }) => {
             updatedAt: '2025-09-13T11:53:37.960Z',
             __v: 0
         }
+    }
+
+
+    let products = []
+
+    try {
+        const resProducts = await fetch("https://miracs.vercel.app/api/admin/product", {
+            cache: "no-store",          // يمنع التخزين المؤقت
+        });
+
+
+        if (!resProducts.ok) throw new Error("خطأ في الجلب");
+        products = await resProducts.json();
+
+    } catch (error) {
+        console.log(error.message)
     }
 
 
@@ -181,7 +199,7 @@ const Product = async ({ params }) => {
 
                 <div className='md:hidden'>
 
-                    <SlideImg imgs={product.images}  />
+                    <SlideImg imgs={product.images} />
 
                     <div className='   p-[0.1px] '>
 
@@ -245,7 +263,7 @@ const Product = async ({ params }) => {
 
 
 
-                        <Form qty={1} product={product.nameProduct} priceProduct={product.price}  thumbnail={product?.thumbnail} />
+                        <Form qty={1} product={product.nameProduct} priceProduct={product.price} thumbnail={product?.thumbnail} />
 
                     </div>
 
@@ -284,6 +302,52 @@ const Product = async ({ params }) => {
 
 
                 </div>
+
+                <div className='mx-2 text-[1.3rem] mp-4'>
+                    <hr className='my-4' />
+                    <h1>منتوجات قد تعجبك</h1>
+                </div>
+
+
+                <div className='grid  2xl:grid-cols-7 xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-3  p-2 mx-auto'>
+                    {
+                        products.map((item, index) => {
+                            return <Link href={`/product/${item._id}`} key={index}><div className=' hover:shadow-md rounded-md' >
+                                <img src={item.thumbnail} className='h-[12rem] w-full object-cover' alt='img' />
+                                <div className='px-1  '>
+                                    <p className='text-[.8rem] p-1 pb-0 truncate text-gray-600 '>{item.description}</p>
+                                    <div className='flex justify-between items-center'>
+                                        <p className='text-[.9rem] truncate'>{item.title}</p>
+                                        <div className='flex text-[.9rem] text-primary'>
+                                            <IoIosStar />
+                                            <IoIosStar />
+                                            <IoIosStar />
+                                            <IoIosStar />
+                                            <IoIosStar />
+                                        </div>
+                                    </div>
+                                    <div className='flex justify-between items-center'>
+                                        <div className='bg-primary text-white rounded-3xl w-[3rem] h-[1.5rem] flex items-center justify-center'>
+                                            <MdOutlineAddShoppingCart />
+                                        </div>
+
+                                        <div className='flex items-center gap-2 mt-2' dir='ltr' >
+                                            <p className='font-semibold truncate'>{item.price - 1} DH</p>
+                                            <p className='text-gray-300 line-through text-[.9rem] truncate'>{item.price + 50} DH</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            </Link>
+                        })
+                    }
+
+
+                </div>
+
+
+
 
                 <div className='min-h-[20rem] bg-blue-50 mt-[5rem] xl:px-[7rem] px-4 py-[2rem] flex flex-col items-center md:items-start md:flex-row justify-between gap-4'>
                     <div className='w-[300px]'>
