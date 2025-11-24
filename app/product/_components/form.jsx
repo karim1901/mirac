@@ -38,6 +38,24 @@ const Form = ({qty,product,priceProduct,thumbnail}) => {
         router.push("/error")
       })
 
+      if (window.fbq) {
+        window.fbq('track', 'Purchase', {
+          value: info.price,     // قيمة الطلب
+          currency: "MAD",
+          content_name: info.nameProduct,     // العملة  
+        });
+      }
+  
+      // TikTok Purchase Event
+      if (window.ttq) {
+        window.ttq.track('CompletePayment', {
+          content_name: info.nameProduct,
+          value: info.price,
+          currency: 'MAD'
+        });
+      }
+  
+
 
     }
 
